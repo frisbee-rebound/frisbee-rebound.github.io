@@ -2,6 +2,28 @@ let listItems = document.querySelectorAll('.productList li');
 let selectedItems = document.querySelector('#selectedItems');
 let totalElement = document.querySelector('#total');
 
+const cashPaid = document.getElementById('cashPaid');
+const amountToReturn = document.getElementById('cashToReturn');
+
+function calculateAmountBack() {
+    if (cashPaid.value <= 0.0) {
+        return;
+    }
+
+    let difference = Number(cashPaid.value) - Number(totalElement.textContent);
+    amountToReturn.textContent = difference;
+}
+
+cashPaid.addEventListener('input', (e) => {
+    calculateAmountBack();
+});
+
+const clearCashToReturnButton = document.getElementById('clearCashToReturn');
+clearCashToReturnButton.addEventListener('click', function () {
+    cashPaid.value = 0;
+    amountToReturn.textContent = '';
+});
+
 let statusBox = document.getElementById("statusBox");
 
 let date = new Date();
@@ -20,11 +42,13 @@ if (clearButton !== null) {
         let selectedItemsNodeList = document.querySelectorAll('#selectedItems li');
         selectedItemsNodeList.forEach(item => item.remove());
         statusBox.textContent = "";
-        totalElement.textContent = 0;
+        totalElement.textContent = "0";
+        cashPaid.value = 0;
+        amountToReturn.textContent = "0";
     });
 }
 
-for (var i = 0; i < listItems.length; i++) {
+for (let i = 0; i < listItems.length; i++) {
     listItems[i].addEventListener('click', function (event) {
         let price = Number(event.target.getAttribute('data-price'));
 
@@ -71,6 +95,14 @@ checkoutButtons.forEach(function (button) {
         checkoutJournal.push(checkoutData);
 
         localStorage.setItem(storageKey, JSON.stringify(checkoutJournal));
+
+        if (this.hasAttribute('data-paid')) {
+            cashPaid.value = Number(this.getAttribute('data-paid'));
+            calculateAmountBack();
+        } else {
+            cashPaid.value = 0.0;
+            amountToReturn.textContent = "0";
+        }
 
         // Clear selected items
         selectedItemsNodeList.forEach(item => item.remove());
