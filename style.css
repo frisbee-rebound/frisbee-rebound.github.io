@@ -1,28 +1,32 @@
 body {
-  font-family: Arial, sans-serif;
-  font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
 }
 
 .header-container {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .column {
-  flex: 1;
+    flex: 1;
 }
 
 .remove::after {
-  content: " ×";
-  color: red;
+    content: " ×";
+    color: red;
 }
 
 li {
-  margin: 5px 0;
-  padding: 5px 0;
+    margin: 5px 0;
+    padding: 5px 0;
 }
 
 .totalAmount {
-  font-weight: bold;
-  font-size: 2em;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+button.checkoutButton {
+    margin-right: 10px;
 }

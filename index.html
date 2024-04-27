@@ -75,8 +75,8 @@
 <main>
     <h2>Gewählte Produkte</h2>
     <ul id="selectedItems"></ul>
-    <br/>
     <div class="totalAmount"><p>CHF <span id="total">0</span> .-</p></div>
+    <div><br/><span style="height: 5px;"> </span></div>
     <div>
         <button class="checkoutButton">Bar</button>
         <button class="checkoutButton" data-paid="10">Bar 10</button>
@@ -84,15 +84,16 @@
         <button class="checkoutButton" data-paid="50">Bar 50</button>
         <button class="checkoutButton" data-paid="100">Bar 100</button>
         <button class="checkoutButton" data-paid="200">Bar 200</button>
-        <br>
-        <div>
-            <label for="cashPaid">Zahlung: </label>
-            <input id="cashPaid" type="number">
-            <label>Rückgeld: </label>
-            <span id="cashToReturn">0</span>
-            <button id="clearCashToReturn">x</button>
-        </div>
     </div>
+    <div><br/><span style="height: 5px;"> </span></div>
+    <div>
+        <label for="cashPaid">Zahlung: </label>
+        <input id="cashPaid" type="number">
+        <label>Rückgeld: </label>
+        <span id="cashToReturn">0</span>
+        <button id="clearCashToReturn">x</button>
+    </div>
+    <div><br/><span> </span></div>
     <div>
         <button class="checkoutButton">Twint</button>
         <button class="checkoutButton">SumUp</button>
@@ -101,12 +102,7 @@
         <br/>
     </div>
     <div>
-        <br/>
-        <hr/>
         <button id="clearButton">Auswahl löschen</button>
-    </div>
-    <div>
-        <br/>
     </div>
     <div id="info">
         <span id="statusBox"></span>
