@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Product List</h1>
+<div id="productList"></div>
+<h2>Basket</h2>
+<div id="basket"></div>
+
+<script src="product.js"></script>
+<script>
+
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    window.onload = function () {
+        loadProducts();
+        renderBasket();
+    }
+
+    function loadProducts() {
+        let transaction = db.transaction(["products"]);
+        let objectStore = transaction.objectStore("products");
+        let request = objectStore.getAll();
+
+        request.onerror = function (event) {
+            console.log("Error getting documents: ", event);
+        };
+
+        request.onsuccess = function (event) {
+            let products = event.target.result;
+
+            products.sort((a, b) => (a.category > b.category) ? 1 : -1);
+
+            products.forEach(product => {
+                let listItem = document.createElement('div');
+                let addButton = document.createElement('button');
+                addButton.textContent = "Add to basket";
+                addButton.onclick = function () {
+                    addToBasket(product);
+                };
+                listItem.textContent = `${product.name} - ${product.price}$ `;
+                listItem.setAttribute("data-id", product.id);
+                listItem.setAttribute("data-price", product.price);
+                listItem.appendChild(addButton);
+                document.getElementById('productList').appendChild(listItem);
+            });
+        };
+    }
+
+    function addToBasket(product) {
+        basket.push(product);
+        localStorage.setItem('basket', JSON.stringify(basket));
+        renderBasket();
+    }
+
+    function renderBasket() {
+        let basketDiv = document.getElementById('basket');
+        basketDiv.innerHTML = "";
+        basket.forEach((product, index) => {
+            let listItem = document.createElement('div');
+            let removeButton = document.createElement('button');
+            removeButton.textContent = "Remove from basket";
+            removeButton.onclick = function () {
+                removeFromBasket(index);
+            };
+            listItem.textContent = `${product.name} - ${product.price}$ `;
+            listItem.appendChild(removeButton);
+            basketDiv.appendChild(listItem);
+        });
+    }
+
+    function removeFromBasket(index) {
+        basket.splice(index, 1);
+        localStorage.setItem('basket', JSON.stringify(basket));
+        renderBasket();
+    }
+
+</script>
+
+</body>
+</html>

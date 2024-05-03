@@ -3,13 +3,29 @@ body {
     font-size: 20px;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .header-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
 .column {
     flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
 }
 
 .remove::after {

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Product Form</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Product Form</h1>
+    <form id="productForm">
+
+        <div class="form-group">
+            <label for="productId">Id</label>
+            <input id="productId" readonly type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input class="form-control" id="productName" placeholder="Enter product name" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input class="form-control" id="category" placeholder="Enter category" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input class="form-control" id="price" placeholder="Enter price" step="0.01" type="number">
+        </div>
+
+        <button class="btn btn-primary" id="submitActionButton" type="submit">Submit</button>
+        <button id="clearFields" type="button">Clear</button>
+    </form>
+</div>
+
+<div id="productList"></div>
+
+<hr>
+
+<button id="exportButton">Export to JSON</button>
+
+<script src="product.js"></script>
+<script>
+
+    function loadProducts() {
+        let transaction = db.transaction(["products"]);
+        let objectStore = transaction.objectStore("products");
+        let request = objectStore.getAll();
+
+        request.onerror = function (event) {
+            console.log("Error getting documents: ", event);
+        };
+
+        request.onsuccess = function (event) {
+            let products = event.target.result;
+            products.sort((a, b) => (a.category > b.category) ? 1 : -1);
+
+            let category = '';
+            let productList = '';
+
+            for (let product of products) {
+                if (product.category !== category) {
+                    category = product.category;
+                    productList += `<h2>${category}</h2>`;
+                }
+
+                productList += `<p>${product.name}: $${product.price.toFixed(2)}
+                         <button class="editButton" data-id="${product.id}">Edit</button></p>`;
+            }
+
+            document.getElementById('productList').innerHTML = productList;
+
+            // Add event listeners for the Edit buttons
+            document.querySelectorAll('.editButton').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    loadProduct(event.target.getAttribute('data-id'));
+                });
+            });
+        };
+    }
+
+    function addProduct() {
+        let productId = document.getElementById('productId').value;
+        let productName = document.getElementById('productName').value;
+        let category = document.getElementById('category').value;
+        let price = document.getElementById('price').value;
+
+        let product = {
+            name: productName,
+            category: category,
+            price: parseFloat(price)
+        };
+
+        let transaction = db.transaction(["products"], "readwrite");
+        let objectStore = transaction.objectStore("products");
+        let request;
+
+        if (productId === '') {
+            // Add a new product
+            request = objectStore.add(product);
+        } else {
+            // Update an existing product
+            product.id = Number(productId);
+            request = objectStore.put(product);
+        }
+
+        request.onsuccess = function (event) {
+            // Reset the form and load the product list
+            document.querySelector('form').reset();
+            document.getElementById('productId').value = '';
+            loadProducts();
+        };
+
+        request.onerror = function (event) {
+            alert("Unable to add product, it is already exist in your database! ");
+        }
+    }
+
+    function loadProduct(id) {
+        let transaction = db.transaction(["products"]);
+        let objectStore = transaction.objectStore("products");
+        let request = objectStore.get(Number(id));
+
+        request.onerror = function (event) {
+            console.log("Error getting product: ", event);
+        };
+
+        request.onsuccess = function (event) {
+            let product = event.target.result;
+
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('category').value = product.category;
+            document.getElementById('price').value = product.price;
+
+            // Change submit button text
+            document.getElementById('submitActionButton').innerHTML = 'Update';
+        };
+    }
+
+    let form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        addProduct();
+
+        // Reset submit button text
+        document.getElementById('submitActionButton').innerHTML = 'Submit';
+    });
+
+    document.getElementById('clearFields').addEventListener('click', function () {
+        document.querySelector('form').reset();
+        document.getElementById('productId').value = ''; // Make sure the hidden field is also cleared
+        document.getElementById('submitActionButton').innerHTML = 'Submit'; // Reset the button text
+    });
+
+    function exportToJSON() {
+        let transaction = db.transaction(["products"]);
+        let objectStore = transaction.objectStore("products");
+        let request = objectStore.getAll();
+
+        request.onsuccess = function (event) {
+            let products = event.target.result;
+            let jsonData = JSON.stringify(products);
+            downloadToFile(jsonData, 'products.json', 'text/plain');
+        };
+
+        request.onerror = function (event) {
+            console.error("Error exporting data: ", event);
+        };
+    }
+
+    function downloadToFile(content, filename, contentType) {
+        const a = document.createElement('a');
+        const file = new Blob([content], {type: contentType});
+
+        a.href = URL.createObjectURL(file);
+        a.download = filename;
+        a.click();
+
+        URL.revokeObjectURL(a.href);
+    }
+
+    document.getElementById('exportButton').addEventListener('click', exportToJSON);
+</script>
+
+</body>
+</html>
