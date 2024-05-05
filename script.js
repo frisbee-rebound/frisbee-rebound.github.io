@@ -32,8 +32,11 @@ if (clearCashToReturnButton !== null) {
 
 let statusBox = document.getElementById("statusBox");
 
-let date = new Date();
-let storageKey = date.toISOString().slice(0, 10);
+
+function getStorageKey() {
+    let date = new Date();
+    return date.toISOString().slice(0, 10);
+}
 
 
 let voices = speechSynthesis.getVoices();
@@ -168,6 +171,8 @@ checkoutButtons.forEach(function (button) {
             total: Number(totalElement.textContent)
         };
 
+        let storageKey = getStorageKey();
+
         let checkoutJournal = JSON.parse(localStorage.getItem(storageKey));
         if (checkoutJournal === null) {
             checkoutJournal = [];
@@ -222,7 +227,7 @@ function exportJournal(day) {
 let reportButton = document.getElementById('reportButton');
 if (reportButton !== null) {
     reportButton.addEventListener("click", function () {
-        exportJournal(storageKey)
+        exportJournal(getStorageKey());
     });
 }
 
@@ -233,12 +238,10 @@ document.getElementById('eighteen').textContent = calculateBirthDateString(18);
 let dateOfBirthBox = document.getElementById('dob');
 if (dateOfBirthBox !== null) {
     dateOfBirthBox.addEventListener('change', function () {
-        var dob = new Date(this.value);
-        var diff_ms = Date.now() - dob.getTime();
-        var age_dt = new Date(diff_ms);
-
-        var age = Math.abs(age_dt.getUTCFullYear() - 1970);
-
+        let dob = new Date(this.value);
+        let diff_ms = Date.now() - dob.getTime();
+        let age_dt = new Date(diff_ms);
+        let age = Math.abs(age_dt.getUTCFullYear() - 1970);
         document.getElementById('age').textContent = "Alter: " + age;
     });
 }
