@@ -12,60 +12,66 @@
     <div class="column">
         <h2>Getränke</h2>
         <ul class="productList">
-            <li data-price="2">Sirup 2.-</li>
-            <li data-price="2">Capri Sun 2.-</li>
-            <li data-price="4">Wasser 4.-</li>
-            <li data-price="4">Süssgetränk 4.-</li>
-            <li data-price="5">RedBull 5.-</li>
-            <li data-price="5">Tony Mate 5.-</li>
+            <li data-price="2">Sirup</li>
+            <li data-price="2">Capri Sun</li>
+            <li data-price="4">Wasser</li>
+            <li data-price="4">Süssgetränk</li>
+            <li data-price="5">RedBull</li>
+            <li data-price="5">Tony Mate</li>
         </ul>
         <h2>Heissgetränke</h2>
         <ul class="productList">
-            <li data-price="3">Tee 3.-</li>
-            <li data-price="4">Kaffe 4.-</li>
+            <li data-price="3">Tee</li>
+            <li data-price="4">Kaffe</li>
+        </ul>
+        <h2>Menüs</h2>
+        <ul class="productList">
+            <li data-price="12">Vegi Fried Rice</li>
+            <li data-price="13">Fleisch Curry</li>
         </ul>
     </div>
 
     <div class="column">
         <h2>Snacks</h2>
         <ul class="productList">
-            <li data-price="1">Chupa Chups 1.-</li>
-            <li data-price="3">Süssigkeiten 3.-</li>
-            <li data-price="3">Frühlingsrolle 3.-</li>
+            <li data-price="0.5">Süssigkeiten 0.5.-</li>
+            <li data-price="1">Süssigkeiten 1.0.-</li>
+            <li data-price="2">Süssigkeiten 2.0.-</li>
+            <li data-price="2">Süssigkeiten 3.0.-</li>
+            <li data-price="1">Chupa Chups</li>
+            <li data-price="3">Frühlingsrolle</li>
         </ul>
 
         <h2>Fast Food</h2>
         <ul class="productList">
-            <li data-price="5">Hot Dog 5.-</li>
-            <li data-price="6">Pommes Frites 6.-</li>
-            <li data-price="6">Chicken Nuggets 6.-</li>
-            <li data-price="7">Bratwurst 7.-</li>
-            <li data-price="8" hidden="hidden">Schnitzelbrot 8.-</li>
-            <li data-price="10">Hamburger 10.-</li>
-            <li data-price="11">Cheeseburger 11.-</li>
-        </ul>
-        <h2>Menüs</h2>
-        <ul class="productList">
-            <li data-price="12">Vegi Fried Rice 12.-</li>
-            <li data-price="13">Fleisch Curry 13.-</li>
+            <li data-price="5">Hot Dog</li>
+            <li data-price="6">Pommes Frites</li>
+            <li data-price="6">Chicken Nuggets</li>
+            <li data-price="7">Bratwurst</li>
+            <li data-price="8" hidden="hidden">Schnitzelbrot</li>
+            <li data-price="10">Hamburger</li>
+            <li data-price="11">Cheeseburger</li>
         </ul>
     </div>
 
     <div class="column">
-        <h2>Biere</h2>
+        <h2>Biere / Weine</h2>
         <ul class="productList">
-            <li data-price="4.5">Stange 4.5.-</li>
-            <li data-price="5">Bier Flasche/Dose 5.-</li>
-            <li data-price="6">Corona Bier 6.-</li>
-            <li data-price="6">Sommersby 6.-</li>
-            <li data-price="15">Pitcher 1.5L 15.-</li>
-            <li data-price="8">Smirnoff 8.-</li>
+            <li data-price="4.5">Stange</li>
+            <li data-price="5">Bier Flasche/Dose</li>
+            <li data-price="6">Corona Bier</li>
+            <li data-price="6">Sommersby</li>
+            <li data-price="15">Pitcher 1.5L</li>
+            <li data-price="8">Smirnoff</li>
+            <li data-price="19">Weisswein 0.75L</li>
+            <li data-price="19">Rotwein 0.75L</li>
         </ul>
         <h2>Spirituosen</h2>
         <ul class="productList">
-            <li data-price="6">Kaffe Schnaps 6.-</li>
-            <li data-price="5">Kleiner Feigling 5.-</li>
-            <li data-price="5">Jägermeister 5.-</li>
+            <li data-price="6">Kaffe Schnaps</li>
+            <li data-price="5">Kleiner Feigling</li>
+            <li data-price="5">Jägermeister</li>
+            <li data-price="10">Long Drink</li>
         </ul>
     </div>
 </header>
@@ -74,7 +80,9 @@
     <section id="selectedProductList">
         <h2>Gewählte Produkte</h2>
         <ul id="selectedItems"></ul>
-        <div class="totalAmount"><p>CHF <span id="total">0</span> .-</p></div>
+        <div class="totalAmount">
+            <span>CHF <span id="total">0</span> .-</span>
+        </div>
         <div><br/><span style="height: 5px;"> </span></div>
         <div>
             <button class="checkoutButton">Bar</button>
@@ -96,6 +104,7 @@
         <div>
             <button class="checkoutButton">Twint</button>
             <button class="checkoutButton">SumUp</button>
+            <button class="checkoutButton">Rechnung</button>
         </div>
         <div>
             <br/>
@@ -112,11 +121,6 @@
         <div>16 Jahre: <span id="sixteen"></span></div>
         <div>18 Jahre: <span id="eighteen"></span></div>
         <br/>
-        <!--    <div>-->
-        <!--        <label for="dob">Geburtsdatum:</label>-->
-        <!--        <input id="dob" type="date">-->
-        <!--        <span id="age"></span>-->
-        <!--    </div>-->
     </aside>
 </main>
 

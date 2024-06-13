@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Catering Srijith Withanage Rapport</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <link href="normalize.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <header>
+    <div>
+        <h1>Rapporte</h1>
+    </div>
 </header>
 
 <main>
     <div>
-        <h1>Rapporte</h1>
-    </div>
-    <div>
-        <h2>Tagesrapport</h2>
-        <button id="reportButton">exportieren</button>
-    </div>
-    <div>
         <h2>Datum</h2>
-        <div id="daySelection"></div>
+        <select id="reportedDaySelection"></select>
         <button id="exportButton">exportieren</button>
+    </div>
+    <div>
+        <h2>Buchungen</h2>
+        <ul id="purchases"></ul>
     </div>
 </main>
 

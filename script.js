@@ -5,13 +5,23 @@ let totalElement = document.querySelector('#total');
 const cashPaid = document.getElementById('cashPaid');
 const amountToReturn = document.getElementById('cashToReturn');
 
+
+class Product {
+    constructor(id, name, category, price) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
+}
+
+
 function calculateAmountBack() {
     if (cashPaid.value <= 0.0) {
         return;
     }
 
-    let difference = Number(cashPaid.value) - Number(totalElement.textContent);
-    amountToReturn.textContent = difference;
+    amountToReturn.textContent = Number(cashPaid.value) - Number(totalElement.textContent);
 }
 
 if (cashPaid !== null) {
@@ -55,28 +65,36 @@ let selectedVoice = voices[0];
 // }
 // speechSynthesis.speak(testMessage);
 
-let reportingDays = [];
-for (let i = 0; i < localStorage.length; i++) {
-    let reportingDay = localStorage.key(i);
-    reportingDays.push(reportingDay);
-}
-
-let daySelection = document.getElementById("daySelection");
-if (daySelection !== null) {
-    let reportingDaysSelection = document.createElement('select');
-    reportingDaysSelection.id = 'reportingDays';
+let reportedDaySelection = document.getElementById("reportedDaySelection");
+if (reportedDaySelection !== null) {
+    let isFirst = true;
+    let reportingDays = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        let reportingDay = localStorage.key(i);
+        reportingDays.push(reportingDay);
+    }
+    reportingDays.sort((a, b) => {
+        if (a > b) {
+            return -1;
+        } else if (a < b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
     reportingDays.forEach(function (day) {
         let option = new Option(day, day);
-        reportingDaysSelection.append(option);
+        reportedDaySelection.append(option);
+        isFirst = false;
     });
-    daySelection.appendChild(reportingDaysSelection);
+    let changeEvent = new Event('change');
+    reportedDaySelection.dispatchEvent(changeEvent);
 }
 
 let exportButton = document.getElementById("exportButton");
 if (exportButton !== null) {
     exportButton.addEventListener("click", function () {
-        let dayToExport = document.getElementById('reportingDays').value;
-        exportJournal(dayToExport);
+        exportJournal(reportedDaySelection.value);
     });
 }
 
@@ -88,19 +106,19 @@ function calculateBirthDateString(years) {
 }
 
 function announceNewOrder(item) {
-// Create a new SpeechSynthesisUtterance instance
+    // Create a new SpeechSynthesisUtterance instance
     let message = new SpeechSynthesisUtterance();
 
-// Set the text message
+    // Set the text message
     message.text = item;
 
-// Set parameters if you like
+    // Set parameters if you like
     message.volume = 1; // Volume: from 0 to 1, default 1
     message.rate = 1; // Rate: from 0.1 to 10, default 1
     message.pitch = 1; // Pitch: from 0 to 2, default 1
     message.voice = selectedVoice;
 
-// Play the text
+    // Play the text
     window.speechSynthesis.speak(message);
 }
 
@@ -155,6 +173,8 @@ checkoutButtons.forEach(function (button) {
         let items = Array.from(selectedItemsNodeList).map(item => item.textContent);
 
         let kitchenItems = Array.from(selectedItemsNodeList);
+
+        // @TODO: ensure that the items are stored as Product instance, so we can conveniently use it
 
         for (let i = 0; i < kitchenItems.length; i++) {
             let kitchenTask = kitchenItems[i];
@@ -223,17 +243,51 @@ function exportJournal(day) {
     document.body.removeChild(a);
 }
 
-// Event listener for Report button
-let reportButton = document.getElementById('reportButton');
-if (reportButton !== null) {
-    reportButton.addEventListener("click", function () {
-        exportJournal(getStorageKey());
-    });
+// // Event listener for Report button
+// let reportButton = document.getElementById('reportButton');
+// if (reportButton !== null) {
+//     reportButton.addEventListener("click", function () {
+//         exportJournal(getStorageKey());
+//     });
+// }
+
+
+function fillPurchasesList(day) {
+    // get the items from localStorage
+    let items = localStorage.getItem(day);
+
+    // assuming items are stored as a stringified JSON array
+    // if not, you'll need to modify this
+    items = JSON.parse(items);
+
+    // iterate through items and append each one to the ul
+    for (let item of items) {
+        let productItem = new Product(item);
+        console.log(productItem);
+        let li = document.createElement('li'); // create a new list item element
+        li.textContent = item; // set its text content to the current item
+        purchasesList.appendChild(li); // append it to the ul
+    }
 }
 
+let purchasesList = document.getElementById('purchases');
+if (purchasesList !== null) {
+    reportedDaySelection.addEventListener("change", function () {
+        let selectedDay = this.value;
+        fillPurchasesList(selectedDay);
+    });
+    fillPurchasesList(reportedDaySelection.value);
+}
 
-document.getElementById('sixteen').textContent = calculateBirthDateString(16);
-document.getElementById('eighteen').textContent = calculateBirthDateString(18);
+let sixteenBirthdayBox = document.getElementById('sixteen');
+if (sixteenBirthdayBox !== null) {
+    sixteenBirthdayBox.textContent = calculateBirthDateString(16);
+}
+
+let eighteenBirthdayBox = document.getElementById('eighteen');
+if (eighteenBirthdayBox !== null) {
+    eighteenBirthdayBox.textContent = calculateBirthDateString(18);
+}
 
 let dateOfBirthBox = document.getElementById('dob');
 if (dateOfBirthBox !== null) {
