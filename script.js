@@ -98,6 +98,32 @@ if (exportButton !== null) {
     });
 }
 
+let exportAllButton = document.getElementById("exportAllButton");
+if (exportAllButton !== null) {
+    exportAllButton.addEventListener("click", function () {
+        exportEntireJournal();
+    });
+}
+
+function exportEntireJournal() {
+    let allData = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let data = JSON.parse(localStorage.getItem(key));
+        allData.push(data);
+    }
+
+    let blob = new Blob([JSON.stringify(allData)], {type: 'application/json'});
+
+    let a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    let today = getStorageKey();
+    a.download = 'catering_entire_journal_' + today + '.json';
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
 
 function calculateBirthDateString(years) {
     let date = new Date();
