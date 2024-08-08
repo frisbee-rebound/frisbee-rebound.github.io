@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget</title>
+
+    <style>
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+    </style>
+</head>
+<body>
+<h1 id="budgetTitle">Test Budget</h1>
+<form id="budgetForm">
+    <div id="budgetNameBox">
+        <label for="budgetName">Budget Name:</label>
+        <input id="budgetName" name="budgetName" readonly required type="text">
+    </div>
+
+    <br>
+
+    <label for="positionName">Position Name:</label>
+    <input id="positionName" name="positionName" required type="text">
+    <br>
+
+    <label>Position Type:</label>
+    <input checked id="expense" name="positionType" required type="radio" value="expense">
+    <label for="expense">Expense</label>
+    <input id="income" name="positionType" required type="radio" value="income">
+    <label for="income">Income</label>
+    <br>
+
+    <label for="amount">Amount:</label>
+    <input id="amount" name="amount" required step="0.01" type="number">
+    <br>
+
+    <label>Re-occurrence:</label>
+    <input checked id="once" name="reoccurrence" required type="radio" value="once">
+    <label for="once">Once</label>
+    <input id="daily" name="reoccurrence" required type="radio" value="daily">
+    <label for="daily">Daily</label>
+    <input id="monthly" name="reoccurrence" required type="radio" value="monthly">
+    <label for="monthly">Monthly</label>
+    <input id="yearly" name="reoccurrence" required type="radio" value="yearly">
+    <label for="yearly">Yearly</label>
+    <br>
+
+    <button type="submit">Add Position</button>
+</form>
+
+<p id="totalAmountOnce">Total Amount (Once): 0</p>
+<p id="totalAmountDaily">Total Amount (Daily): 0</p>
+<p id="totalAmountMonthly">Total Amount (Monthly): 0</p>
+<p id="totalAmountYearly">Total Amount (Yearly): 0</p>
+
+<ul id="positionList"></ul>
+
+<script>
+
+    let onceItems = [];
+    let dailyItems = [];
+    let monthlyItems = [];
+    let yearlyItems = [];
+
+    function getPositionTypeValue(radioName) {
+        return document.querySelector('input[name="' + radioName + '"]:checked').value;
+    }
+
+    function calculateTotalAmount(items) {
+        let totalAmount = 0;
+        for (let item of items) {
+            if (item[0] === 'income') {
+                totalAmount += Number(item[1]);
+            } else {
+                totalAmount -= Number(item[1]);
+            }
+        }
+        return totalAmount;
+    }
+
+    // Get the budgetName input field
+    const budgetName = document.getElementById('budgetName');
+
+    // Add a focus event listener
+    budgetName.addEventListener('focus', function () {
+        this.readOnly = false; // Make the input field editable when it is focused
+    });
+
+    // Add a blur event listener
+    budgetName.addEventListener('blur', function () {
+        this.readOnly = true; // Make the input field read-only when it loses focus
+    });
+
+    document.getElementById('budgetForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get form values
+        const positionName = document.getElementById('positionName').value;
+        const positionKind = getPositionTypeValue('positionType');
+        const reoccurrence = getPositionTypeValue('reoccurrence');
+        const amount = Number(document.getElementById('amount').value);
+
+        // Create new list item
+        const li = document.createElement('li');
+        li.textContent = `${positionName}: ${positionKind === 'income' ? '+' : '-'} ${amount} ${reoccurrence}`;
+        document.getElementById('positionList').appendChild(li);
+
+        // Add the item to the appropriate array based on its reoccurrence type
+        let item = [positionKind, amount]
+        switch (reoccurrence) {
+            case 'once':
+                onceItems.push(item);
+                break;
+            case 'daily':
+                dailyItems.push(item);
+                break;
+            case 'monthly':
+                monthlyItems.push(item);
+                break;
+            case 'yearly':
+                yearlyItems.push(item);
+                break;
+        }
+
+        // Update total amount
+        document.getElementById('totalAmountOnce').textContent = `Total Amount (Once): ${calculateTotalAmount(onceItems)}`;
+        document.getElementById('totalAmountDaily').textContent = `Total Amount (Daily): ${calculateTotalAmount(dailyItems)}`;
+        document.getElementById('totalAmountMonthly').textContent = `Total Amount (Monthly): ${calculateTotalAmount(monthlyItems)}`;
+        document.getElementById('totalAmountYearly').textContent = `Total Amount (Yearly): ${calculateTotalAmount(yearlyItems)}`;
+
+        // Clear form
+        document.getElementById('budgetForm').reset();
+    });
+
+</script>
+</body>
+</html>

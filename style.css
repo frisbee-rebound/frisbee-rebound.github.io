@@ -3,6 +3,18 @@ body {
     font-size: 20px;
 }
 
+header {
+    padding: 10px;
+}
+
+main {
+    padding: 10px;
+}
+
+footer {
+    padding: 10px;
+}
+
 .main-container {
     display: flex;
     flex-direction: row;
@@ -55,4 +67,32 @@ button.checkoutButton {
 ul.productList {
     padding-top: 0;
     margin-top: 0;
+}
+
+
+/*
+Tabs
+*/
+.tabs {
+    display: flex;
+    cursor: pointer;
+}
+
+.tab-button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-right: 5px;
+}
+
+.tab-button.active {
+    background-color: #ddd;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: inline;
 }

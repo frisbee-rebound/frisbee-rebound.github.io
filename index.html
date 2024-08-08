@@ -9,74 +9,107 @@
 </head>
 <body>
 <header class="header-container">
-    <div class="column">
-        <h2>Getränke</h2>
-        <ul class="productList">
-            <li data-price="2">Sirup</li>
-            <li data-price="2">Capri Sun</li>
-            <li data-price="4">Wasser / Süssgetränk</li>
-            <li data-price="5">RedBull</li>
-            <li data-price="5">Tony Mate</li>
-        </ul>
-        <h2>Heissgetränke</h2>
-        <ul class="productList">
-            <li data-price="3">Tee</li>
-            <li data-price="4">Kaffe</li>
-        </ul>
-        <h2>Menüs</h2>
-        <ul class="productList">
-            <li data-price="12">Vegi Fried Rice</li>
-            <li data-price="13">Fleisch Curry</li>
-        </ul>
-    </div>
-
-    <div class="column">
-        <h2>Snacks</h2>
-        <ul class="productList">
-            <li data-price="0.5">Süssigkeiten 0.5.-</li>
-            <li data-price="1">Süssigkeiten 1.0.-</li>
-            <li data-price="2">Süssigkeiten 2.0.-</li>
-            <li data-price="3">Süssigkeiten 3.0.-</li>
-            <li data-price="1">Chupa Chups</li>
-            <li data-price="3">Frühlingsrolle</li>
-        </ul>
-
-        <h2>Fast Food</h2>
-        <ul class="productList">
-            <li data-price="5">Hot Dog</li>
-            <li data-price="6">Pommes Frites</li>
-            <li data-price="6">Chicken Nuggets</li>
-            <li data-price="7">Bratwurst</li>
-            <li data-price="8" hidden="hidden">Schnitzelbrot</li>
-            <li data-price="10">Hamburger</li>
-            <li data-price="11">Cheeseburger</li>
-            <li data-price="12">Kebab</li>
-        </ul>
-    </div>
-
-    <div class="column">
-        <h2>Biere / Weine</h2>
-        <ul class="productList">
-            <li data-price="4.5">Stange</li>
-            <li data-price="5">Bier Flasche/Dose</li>
-            <li data-price="6">Corona Bier</li>
-            <li data-price="6">Sommersby</li>
-            <li data-price="15">Pitcher 1.5L</li>
-            <li data-price="8">Smirnoff</li>
-            <li data-price="19">Weisswein 0.75L</li>
-            <li data-price="19">Rotwein 0.75L</li>
-        </ul>
-        <h2>Spirituosen</h2>
-        <ul class="productList">
-            <li data-price="6">Kaffe Schnaps</li>
-            <li data-price="5">Kleiner Feigling</li>
-            <li data-price="5">Jägermeister</li>
-            <li data-price="10">Long Drink</li>
-        </ul>
+    <div class="tabs">
+        <button class="tab-button" data-tab="beverages-cold">Getränke</button>
+        <button class="tab-button" data-tab="alcohol-soft">Biere / Weine</button>
+        <button class="tab-button" data-tab="food">Essen</button>
+        <button class="tab-button" data-tab="snacks">Snacks</button>
+        <button class="tab-button" data-tab="special">Spezial</button>
+        <button class="tab-button" data-tab="alcohol-hard">Spirituosen</button>
+        <button class="tab-button" data-tab="beverages-hot">Heissgetränke</button>
     </div>
 </header>
 
 <main class="main-container">
+
+    <section id="selection">
+        <div class="tab-content" id="beverages-cold">
+            <h2>Getränke</h2>
+            <ul class="productList">
+                <li data-price="2">Sirup</li>
+                <li data-price="2">Capri Sun</li>
+                <li data-price="4">Wasser / Süssgetränk</li>
+                <li data-price="5">RedBull</li>
+                <li data-price="5">Tony Mate</li>
+                <li data-price="5">Fever Tree</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="alcohol-soft">
+            <h2>Biere / Weine</h2>
+            <ul class="productList">
+                <li data-price="4.5">Stange</li>
+                <li data-price="5">Bier Flasche/Dose</li>
+                <li data-price="6">Corona Bier</li>
+                <li data-price="6">Sommersby</li>
+                <li data-price="15">Pitcher 1.5L</li>
+                <li data-price="8">Smirnoff</li>
+                <li data-price="9.5">Hugo / Lilette / Aperol</li>
+                <li data-price="21">Weisswein budget 0.75L</li>
+                <li data-price="19">Weisswein klein 0.375L</li>
+                <li data-price="29">Weisswein 0.75L</li>
+                <li data-price="19">Rotwein klein 0.375L</li>
+                <li data-price="29">Rotwein 0.75L</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="special">
+            <h2>Spezial</h2>
+            <ul class="productList">
+                <li data-price="1.5">Gipfeli</li>
+                <li data-price="3">Frühlingsrolle</li>
+                <li data-price="5">Sandwitch</li>
+                <li data-price="13">Fleisch Curry</li>
+                <li data-price="12">Vegi Fried Rice</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="snacks">
+            <h2>Snacks</h2>
+            <ul class="productList">
+                <li data-price="0.5">Süssigkeiten 0.5.-</li>
+                <li data-price="1">Süssigkeiten 1.0.-</li>
+                <li data-price="2">Süssigkeiten 2.0.-</li>
+                <li data-price="3">Süssigkeiten 3.0.-</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="food">
+            <h2>Essen</h2>
+            <ul class="productList">
+                <li data-price="5">Hot Dog</li>
+                <li data-price="6">Pommes Frites</li>
+                <li data-price="6">Chicken Nuggets</li>
+                <li data-price="7">Bratwurst</li>
+                <li data-price="10">Schnitzelbrot</li>
+                <li data-price="10">Vegi Schnitzelbrot</li>
+                <li data-price="10">Hamburger</li>
+                <li data-price="11">Cheeseburger</li>
+                <li data-price="12">Kebab</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="alcohol-hard">
+            <h2>Spirituosen</h2>
+            <ul class="productList">
+                <li data-price="6">Kaffe Schnaps</li>
+                <li data-price="5">Kleiner Feigling</li>
+                <li data-price="5">Jägermeister</li>
+                <li data-price="10">Long Drink</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="beverages-hot">
+            <h2>Heissgetränke</h2>
+            <ul class="productList">
+                <li data-price="3">Tee</li>
+                <li data-price="4">Kaffe</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer>
     <section id="selectedProductList">
         <h2>Gewählte Produkte</h2>
         <ul id="selectedItems"></ul>
@@ -123,9 +156,6 @@
         <div>18 Jahre: <span id="eighteen"></span></div>
         <br/>
     </aside>
-</main>
-
-<footer>
 </footer>
 
 <script src="script.js"></script>
