@@ -1,0 +1,310 @@
+[
+  {
+    "id": "8bd3cc7f8d1620ff",
+    "name": "Sirup",
+    "category": "Getränke kalt",
+    "price": 2,
+    "on_menu": true
+  },
+  {
+    "id": "677eedc225308337",
+    "name": "Capri Sun",
+    "category": "Getränke kalt",
+    "price": 2,
+    "on_menu": true
+  },
+  {
+    "id": "4ca813ba58dc0920",
+    "name": "Wasser / Süssgetränk",
+    "category": "Getränke kalt",
+    "price": 4,
+    "on_menu": true
+  },
+  {
+    "id": "abd61d746c12ec25",
+    "name": "RedBull",
+    "category": "Getränke kalt",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "39a2a9f265dfe2d7",
+    "name": "Tony Mate",
+    "category": "Getränke kalt",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "911cc49636c9c052",
+    "name": "Fever Tree",
+    "category": "Getränke kalt",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "b9f6ee6f8c6997e4",
+    "name": "Tee",
+    "category": "Heissgetränke",
+    "price": 3,
+    "on_menu": true
+  },
+  {
+    "id": "8111cbfb01649539",
+    "name": "Kaffee",
+    "category": "Heissgetränke",
+    "price": 4,
+    "on_menu": true
+  },
+  {
+    "id": "b9f6ee6f8c6997e5",
+    "name": "Punch",
+    "category": "Heissgetränke",
+    "price": 3,
+    "on_menu": true
+  },
+  {
+    "id": "62e3b6fe12f3ca04",
+    "name": "Stange",
+    "category": "Biere / Weine",
+    "price": 4.5,
+    "on_menu": false
+  },
+  {
+    "id": "6a3dd68f02af4d7c",
+    "name": "Bier Flasche/Dose",
+    "category": "Biere / Weine",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "a6d721e5bc37e357",
+    "name": "Pitcher 1.5L",
+    "category": "Biere / Weine",
+    "price": 15,
+    "on_menu": false
+  },
+  {
+    "id": "0c66d49b39155f17",
+    "name": "Corona Bier",
+    "category": "Biere / Weine",
+    "price": 6,
+    "on_menu": true
+  },
+  {
+    "id": "cc5b49d23b95f93a",
+    "name": "Sommersby",
+    "category": "Biere / Weine",
+    "price": 6,
+    "on_menu": true
+  },
+  {
+    "id": "dd5b49d23b95f93a",
+    "name": "Gespritzer Weisser",
+    "category": "Biere / Weine",
+    "price": 7,
+    "on_menu": true
+  },
+  {
+    "id": "f3358b32297af29f",
+    "name": "Smirnoff",
+    "category": "Biere / Weine",
+    "price": 8,
+    "on_menu": true
+  },
+  {
+    "id": "525d1157297dca2c",
+    "name": "Hugo / Lilette / Aperol",
+    "category": "Biere / Weine",
+    "price": 9.5,
+    "on_menu": true
+  },
+  {
+    "id": "7c0e46251a72ea63",
+    "name": "Weisswein budget 0.75L",
+    "category": "Biere / Weine",
+    "price": 21,
+    "on_menu": true
+  },
+  {
+    "id": "5c164708aa62a697",
+    "name": "Weisswein klein 0.375L",
+    "category": "Biere / Weine",
+    "price": 19,
+    "on_menu": true
+  },
+  {
+    "id": "1ec4cc3e7007a082",
+    "name": "Weisswein 0.75L",
+    "category": "Biere / Weine",
+    "price": 29,
+    "on_menu": true
+  },
+  {
+    "id": "63087a693801542f",
+    "name": "Rotwein klein 0.375L",
+    "category": "Biere / Weine",
+    "price": 19,
+    "on_menu": true
+  },
+  {
+    "id": "8e1bdc3a5600388e",
+    "name": "Rotwein 0.75L",
+    "category": "Biere / Weine",
+    "price": 29,
+    "on_menu": true
+  },
+  {
+    "id": "6a830e9935179c1c",
+    "name": "Gipfeli",
+    "category": "Snacks",
+    "price": 1.5,
+    "on_menu": true
+  },
+  {
+    "id": "ffe77cc4533bec0d",
+    "name": "Frühlingsrolle",
+    "category": "Snacks",
+    "price": 3,
+    "on_menu": false
+  },
+  {
+    "id": "91dea75e301bf367",
+    "name": "Sandwitch",
+    "category": "Snacks",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "4e46e5ce3359a8ba",
+    "name": "Vegi Fried Rice",
+    "category": "Spezial",
+    "price": 13,
+    "on_menu": false
+  },
+  {
+    "id": "e730ff1f812b452a",
+    "name": "Fleisch Curry",
+    "category": "Spezial",
+    "price": 15,
+    "on_menu": false
+  },
+  {
+    "id": "261539cd12c8ea01",
+    "name": "Süssigkeiten 0.5.-",
+    "category": "Snacks",
+    "price": 0.5,
+    "on_menu": false
+  },
+  {
+    "id": "31232e3327a69599",
+    "name": "Süssigkeiten 1.0.-",
+    "category": "Snacks",
+    "price": 1,
+    "on_menu": false
+  },
+  {
+    "id": "d67ae1f0654bee65",
+    "name": "Süssigkeiten 2.0.-",
+    "category": "Snacks",
+    "price": 2,
+    "on_menu": false
+  },
+  {
+    "id": "c4c555efdbcd7ee5",
+    "name": "Süssigkeiten 3.0.-",
+    "category": "Snacks",
+    "price": 3,
+    "on_menu": false
+  },
+  {
+    "id": "0875c699abec0b64",
+    "name": "Hot Dog",
+    "category": "Essen",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "7849200cc97fd499",
+    "name": "Pommes Frites",
+    "category": "Essen",
+    "price": 6,
+    "on_menu": true
+  },
+  {
+    "id": "651a61a214d93464",
+    "name": "Chicken Nuggets",
+    "category": "Essen",
+    "price": 8,
+    "on_menu": true
+  },
+  {
+    "id": "f86503bf45e0c7df",
+    "name": "Bratwurst",
+    "category": "Essen",
+    "price": 7,
+    "on_menu": true
+  },
+  {
+    "id": "e6499f7a2d12953a",
+    "name": "Schnitzelbrot",
+    "category": "Essen",
+    "price": 10,
+    "on_menu": true
+  },
+  {
+    "id": "c959d505ed42f7d4",
+    "name": "Vegi Schnitzelbrot",
+    "category": "Essen",
+    "price": 10,
+    "on_menu": true
+  },
+  {
+    "id": "c956d85c4eaf3c70",
+    "name": "Hamburger",
+    "category": "Essen",
+    "price": 10,
+    "on_menu": true
+  },
+  {
+    "id": "ed39ad1ecc2fb2f0",
+    "name": "Cheeseburger",
+    "category": "Essen",
+    "price": 11,
+    "on_menu": true
+  },
+  {
+    "id": "3075dfbe1357f211",
+    "name": "Kebab",
+    "category": "Essen",
+    "price": 12,
+    "on_menu": false
+  },
+  {
+    "id": "685d0a79a0e720b9",
+    "name": "Kaffe Schnaps",
+    "category": "Spirituosen",
+    "price": 6,
+    "on_menu": true
+  },
+  {
+    "id": "415aabfa081a2d4d",
+    "name": "Kleiner Feigling",
+    "category": "Spirituosen",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "99d25c6a54dd8fb6",
+    "name": "Jägermeister",
+    "category": "Spirituosen",
+    "price": 5,
+    "on_menu": true
+  },
+  {
+    "id": "91ddc2b7f5c1ae0d",
+    "name": "Long Drink",
+    "category": "Spirituosen",
+    "price": 10,
+    "on_menu": false
+  }
+]
